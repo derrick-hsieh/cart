@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 8px 16px;
+        border: 1px solid black;
+    }
+
+    th {
+        background: rgb(243, 243, 243);
+        font-weight: 600;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div v-if="books.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>書名</th>
+                        <th>出版日期</th>
+                        <th>價格</th>
+                        <th>數量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in books">
+
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <button @click="decrement(index) " v-bind:disabled="item.count <=1">-</button>
+                            {{item.count}}
+                            <button @click="increment(index)">+</button>
+                        </td>
+                        <td><button @click="remove(index)">移除</button></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        <h2 v-else>購物車為空</h2>
+        <h2>總價格{{totalPrice}}</h2>
+    </div>
+    <script src="vue.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
